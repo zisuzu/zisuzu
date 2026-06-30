@@ -1,0 +1,22 @@
+{
+  "name": "roame-v2",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "mobile": "npm run start --workspace=apps/mobile",
+    "web": "npm run dev --workspace=apps/web",
+    "admin": "npm run dev --workspace=apps/admin",
+    "build:web": "npm run build --workspace=apps/web",
+    "build:admin": "npm run build --workspace=apps/admin",
+    "db:migrate": "npm run migrate --workspace=packages/supabase",
+    "db:types": "npm run gen-types --workspace=packages/supabase"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "prettier": "^3.3.0"
+  }
+}
+

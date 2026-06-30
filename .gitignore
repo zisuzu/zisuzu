@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+
+# Next.js
+.next/
+out/
+build/
+
+# Expo / React Native
+.expo/
+dist/
+web-build/
+android/
+ios/
+
+# Supabase
+packages/supabase/.branches/
+packages/supabase/.temp/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+
+# Misc
+.vercel
+.turbo
+
