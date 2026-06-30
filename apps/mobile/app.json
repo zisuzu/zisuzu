@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Roame",
+    "slug": "roame",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "backgroundColor": "#7C3AED"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.zisuzu.roame"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#7C3AED"
+      },
+      "package": "com.zisuzu.roame"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-location",
+      [
+        "expo-image-picker",
+        { "photosPermission": "Allow Roame to access your photos for activity images." }
+      ]
+    ],
+    "scheme": "roame",
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
+
