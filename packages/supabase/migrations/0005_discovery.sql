@@ -4,11 +4,11 @@
 
 -- ── cities ───────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS public.cities (
-  id       UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  name     TEXT NOT NULL,
-  state    TEXT,
-  country  TEXT DEFAULT 'India',
-  location GEOGRAPHY(POINT, 4326),
+  id        UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name      TEXT NOT NULL UNIQUE,
+  state     TEXT,
+  country   TEXT DEFAULT 'India',
+  location  GEOGRAPHY(POINT, 4326),
   is_active BOOLEAN DEFAULT TRUE
 );
 
