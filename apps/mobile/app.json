@@ -3,6 +3,12 @@
     "name": "Roame",
     "slug": "roame",
     "version": "1.0.0",
+    "extra": {
+      "eas": {
+        "projectId": "1dc057c4-15dc-4994-8fb8-0c248679ab34"
+      }
+    },
+    "owner": "zisuzu",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
