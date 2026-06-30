@@ -51,25 +51,25 @@ ON CONFLICT (config_key) DO NOTHING;
 
 -- ── Nearby activities function (PostGIS) ─────────────────────
 CREATE OR REPLACE FUNCTION public.nearby_activities(
-  lat          FLOAT,
-  lng          FLOAT,
-  radius_km    FLOAT DEFAULT 60,
-  category_id  UUID  DEFAULT NULL,
-  limit_count  INT   DEFAULT 50,
-  offset_count INT   DEFAULT 0
+  p_lat          FLOAT,
+  p_lng          FLOAT,
+  p_radius_km    FLOAT DEFAULT 60,
+  p_category_id  UUID  DEFAULT NULL,
+  p_limit        INT   DEFAULT 50,
+  p_offset       INT   DEFAULT 0
 )
 RETURNS TABLE (
-  id               UUID,
-  title            TEXT,
-  description      TEXT,
-  status           TEXT,
-  start_time       TIMESTAMPTZ,
-  end_time         TIMESTAMPTZ,
-  max_participants INT,
-  creator_id       UUID,
-  category_id      UUID,
-  location_id      UUID,
-  distance_km      FLOAT,
+  id                UUID,
+  title             TEXT,
+  description       TEXT,
+  status            TEXT,
+  start_time        TIMESTAMPTZ,
+  end_time          TIMESTAMPTZ,
+  max_participants  INT,
+  creator_id        UUID,
+  category_id       UUID,
+  location_id       UUID,
+  distance_km       FLOAT,
   participant_count BIGINT
 ) AS $$
 BEGIN
@@ -88,7 +88,7 @@ BEGIN
     ROUND(
       (ST_Distance(
         al.location::GEOGRAPHY,
-        ST_SetSRID(ST_MakePoint(lng, lat), 4326)::GEOGRAPHY
+        ST_SetSRID(ST_MakePoint(p_lng, p_lat), 4326)::GEOGRAPHY
       ) / 1000.0)::NUMERIC, 2
     )::FLOAT AS distance_km,
     (SELECT COUNT(*) FROM public.activity_participants ap
@@ -101,13 +101,13 @@ BEGIN
     AND a.start_time > NOW()
     AND ST_DWithin(
       al.location::GEOGRAPHY,
-      ST_SetSRID(ST_MakePoint(lng, lat), 4326)::GEOGRAPHY,
-      radius_km * 1000
+      ST_SetSRID(ST_MakePoint(p_lng, p_lat), 4326)::GEOGRAPHY,
+      p_radius_km * 1000
     )
-    AND (category_id IS NULL OR a.category_id = category_id)
+    AND (p_category_id IS NULL OR a.category_id = p_category_id)
   ORDER BY distance_km ASC, a.start_time ASC
-  LIMIT limit_count
-  OFFSET offset_count;
+  LIMIT p_limit
+  OFFSET p_offset;
 END;
 $$ LANGUAGE plpgsql STABLE SECURITY DEFINER;
 

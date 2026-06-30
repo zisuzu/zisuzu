@@ -22,12 +22,12 @@ export function useNearbyActivities({
     queryKey: ['nearby-activities', lat, lng, radiusKm, categoryId],
     queryFn: async () => {
       const { data, error } = await supabase.rpc('nearby_activities', {
-        lat,
-        lng,
-        radius_km: radiusKm,
-        category_id: categoryId,
-        limit_count: limit,
-        offset_count: offset,
+        p_lat: lat,
+        p_lng: lng,
+        p_radius_km: radiusKm,
+        p_category_id: categoryId,
+        p_limit: limit,
+        p_offset: offset,
       })
       if (error) throw error
       return data
