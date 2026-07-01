@@ -30,11 +30,7 @@
     },
     "plugins": [
       "expo-router",
-      "expo-location",
-      [
-        "expo-image-picker",
-        { "photosPermission": "Allow Roame to access your photos for activity images." }
-      ]
+      "expo-location"
     ],
     "scheme": "roame",
     "experiments": {
