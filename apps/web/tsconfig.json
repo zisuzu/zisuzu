@@ -16,10 +16,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": ".",
-    "paths": {
-      "@types/*": ["../../packages/types/*"]
-    },
     "plugins": [
       {
         "name": "next"
