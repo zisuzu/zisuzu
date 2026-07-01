@@ -1,7 +1,7 @@
 import { createServerClient } from '@supabase/ssr'
 import { createClient } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
-import { Database } from '../../packages/types/database'
+import { Database } from '@types/database'
 
 // Browser client (for client components)
 export { createClient as createBrowserClient } from './supabase-browser'
