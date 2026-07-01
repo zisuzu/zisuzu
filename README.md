@@ -1,41 +1,58 @@
 # Roame v2
 
-Mobile-first app for discovering and joining nearby social activities.
+Monorepo for Roame mobile, web, admin, and Supabase backend.
 
-## Stack
+## Documentation
 
-| Layer | Technology |
-|-------|-----------|
-| Mobile App | React Native (Expo Bare) |
-| Landing Website | Next.js 14 |
-| Admin Dashboard | Next.js 14 |
-| Backend | Supabase (Auth, DB, Storage, Realtime, Edge Functions) |
-| Database | PostgreSQL + PostGIS |
-| CI/CD | GitHub Actions + Expo EAS |
+- Architecture: `docs/ARCHITECTURE.md`
+- Next.js endpoints: `docs/ENDPOINTS.md`
+- Deployment: `docs/DEPLOYMENT.md`
 
-## Monorepo Structure
+## Apps
 
+- `apps/mobile` - Expo React Native app
+- `apps/web` - Next.js public site
+- `apps/admin` - Next.js internal dashboard
+
+## Packages
+
+- `packages/supabase` - SQL migrations, edge functions, seed
+- `packages/types` - shared DB types
+- `packages/ui` - shared design tokens
+
+## Quick Start
+
+1. Fill env vars from `.env.example`.
+2. Install dependencies:
+
+```bash
+npm install
 ```
-roame-v2/
-├── apps/
-│   ├── mobile/     # Expo React Native app
-│   ├── web/        # Next.js landing site
-│   └── admin/      # Next.js admin dashboard
-├── packages/
-│   ├── supabase/   # DB migrations, Edge Functions, seed data
-│   ├── types/      # Shared TypeScript types (generated from Supabase)
-│   └── ui/         # Shared design tokens
-└── .github/
-    └── workflows/  # CI/CD
+
+3. Run apps:
+
+```bash
+# mobile
+npm run mobile
+
+# web (localhost:3000)
+npm run web
+
+# admin (localhost:3001)
+npm run admin
 ```
 
-## Getting Started
+## Build Commands
 
-1. Copy `.env.example` to `.env.local` in each app and fill in values
-2. Run `npm install` at root
-3. Run `npm run mobile` / `npm run web` / `npm run admin`
+```bash
+npm run build:web
+npm run build:admin
+```
 
-## Environment Variables
+## Database Commands
 
-See `.env.example` at root.
+```bash
+npm run db:migrate
+npm run db:types
+```
 

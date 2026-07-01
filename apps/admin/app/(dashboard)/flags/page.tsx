@@ -1,11 +1,20 @@
 import { createAdminSupabaseClient } from '../../../lib/supabase'
 
+type FeatureFlagRow = {
+  id: string
+  flag_key: string
+  description: string | null
+  is_enabled: boolean
+}
+
 export default async function FeatureFlagsPage() {
   const supabase = createAdminSupabaseClient()
-  const { data: flags } = await supabase
+  const { data } = await supabase
     .from('feature_flags')
     .select('*')
     .order('flag_key')
+
+  const flags = (data ?? []) as FeatureFlagRow[]
 
   return (
     <div>

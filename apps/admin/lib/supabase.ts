@@ -1,6 +1,7 @@
 import { createServerClient } from '@supabase/ssr'
+import { createClient } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
-import { Database } from '../../../packages/types/database'
+import { Database } from '../../packages/types/database'
 
 // Browser client (for client components)
 export { createClient as createBrowserClient } from './supabase-browser'
@@ -23,7 +24,6 @@ export function createServerSupabaseClient() {
 
 // Admin client with service role (bypasses RLS)
 export function createAdminSupabaseClient() {
-  const { createClient } = require('@supabase/supabase-js')
   return createClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!,

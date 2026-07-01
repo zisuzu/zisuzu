@@ -1,7 +1,13 @@
 import { createAdminSupabaseClient } from '../../lib/supabase'
 import Link from 'next/link'
 
-async function getStats() {
+type DashboardStats = {
+  users: number
+  activities: number
+  pendingReports: number
+}
+
+async function getStats(): Promise<DashboardStats> {
   const supabase = createAdminSupabaseClient()
   const [{ count: users }, { count: activities }, { count: reports }] = await Promise.all([
     supabase.from('profiles').select('*', { count: 'exact', head: true }),

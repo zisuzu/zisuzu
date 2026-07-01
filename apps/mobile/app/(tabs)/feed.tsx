@@ -84,7 +84,7 @@ export default function FeedScreen() {
           renderItem={({ item }) => (
             <TouchableOpacity
               style={styles.card}
-              onPress={() => router.push({ pathname: '/screens/ActivityDetailScreen', params: { id: item.id } })}
+              onPress={() => router.push(`../screens/ActivityDetailScreen?id=${item.id}`)}
             >
               <View style={styles.cardHeader}>
                 <Text style={styles.cardTitle}>{item.title}</Text>
@@ -107,7 +107,7 @@ export default function FeedScreen() {
       )}
 
       {/* FAB: Create Activity */}
-      <TouchableOpacity style={styles.fab} onPress={() => router.push('/(tabs)/create')}>
+      <TouchableOpacity style={styles.fab} onPress={() => router.push('./create')}>
         <Text style={styles.fabText}>+</Text>
       </TouchableOpacity>
     </View>

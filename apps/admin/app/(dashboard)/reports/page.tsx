@@ -1,13 +1,23 @@
 import { createAdminSupabaseClient } from '../../../lib/supabase'
 import { format } from 'date-fns'
 
+type ReportRow = {
+  id: string
+  target_type: string
+  reason: string
+  status: 'pending' | 'reviewed' | 'dismissed' | 'actioned'
+  created_at: string
+}
+
 export default async function ReportsPage() {
   const supabase = createAdminSupabaseClient()
-  const { data: reports } = await supabase
+  const { data } = await supabase
     .from('reports')
     .select('*')
     .order('created_at', { ascending: false })
     .limit(100)
+
+  const reports = (data ?? []) as ReportRow[]
 
   return (
     <div>

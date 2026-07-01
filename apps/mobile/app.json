@@ -10,14 +10,17 @@
     },
     "owner": "zisuzu",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
+    "platforms": ["ios", "android"],
     "splash": {
       "backgroundColor": "#7C3AED"
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.zisuzu.roame"
+      "bundleIdentifier": "com.zisuzu.roame",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {

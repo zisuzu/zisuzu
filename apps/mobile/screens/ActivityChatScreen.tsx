@@ -4,9 +4,9 @@ import {
   StyleSheet, KeyboardAvoidingView, Platform, ActivityIndicator
 } from 'react-native'
 import { useLocalSearchParams } from 'expo-router'
-import { useActivityChat } from '../../hooks/useActivityChat'
-import { supabase } from '../../lib/supabase'
-import { colors, spacing, typography, borderRadius } from '../../constants/theme'
+import { useActivityChat } from '../hooks/useActivityChat'
+import { supabase } from '../lib/supabase'
+import { colors, spacing, typography, borderRadius } from '../constants/theme'
 import { format } from 'date-fns'
 
 export default function ActivityChatScreen() {
@@ -17,7 +17,10 @@ export default function ActivityChatScreen() {
   const listRef = useRef<FlatList>(null)
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setMyId(data.user?.id ?? null))
+    ;(async () => {
+      const userRes = await supabase.auth.getUser()
+      setMyId(userRes.data.user?.id ?? null)
+    })()
   }, [])
 
   useEffect(() => {

@@ -7,8 +7,11 @@ const monorepoRoot = path.resolve(projectRoot, '../..');
 
 const config = getDefaultConfig(projectRoot);
 
-// Watch all files in the monorepo
-config.watchFolders = [monorepoRoot];
+// Watch all files in the monorepo, including default folders
+config.watchFolders = [
+  ...config.watchFolders,
+  monorepoRoot,
+];
 
 // Resolve modules from monorepo root first, then project
 config.resolver.nodeModulesPaths = [
